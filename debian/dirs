@@ -1,0 +1,8 @@
+etc/init.d
+etc/default
+etc/jabclnd
+var/lib/jabclnd
+var/log/jabclnd
+usr/share/doc/jabclnd
+usr/share/jabclnd/jabclnd
+usr/share/jabclnd/twisted/plugins

@@ -1,0 +1,4 @@
+pidfile=/var/run/jabclnd.pid
+rundir=/var/lib/jabclnd/
+config=/etc/jabclnd/jabclnd.conf
+

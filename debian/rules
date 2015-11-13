@@ -1,0 +1,60 @@
+#!/usr/bin/make -f
+
+#export DH_COMPAT=5
+
+build: build-stamp
+build-stamp:
+	dh_testdir
+	touch build-stamp
+
+clean:
+	dh_testdir
+	dh_testroot
+	rm -f build-stamp install-stamp
+	dh_clean
+
+install: install-stamp
+install-stamp: build-stamp
+	dh_testdir
+	dh_testroot
+	#dh_clean -k
+	dh_prep
+	dh_installdirs
+
+	# Add here commands to install the package into debian/jabclnd.
+	#cp tap.py debian/jabclnd/etc/
+	cp debian/init.d debian/jabclnd/etc/init.d/jabclnd
+	cp debian/default debian/jabclnd/etc/default/jabclnd
+	cp debian/copyright debian/jabclnd/usr/share/doc/jabclnd/copyright
+	#cp debian/README.Debian debian/jabclnd/usr/share/doc/jabclnd/
+	touch debian/jabclnd/usr/share/jabclnd/package-installed
+	touch install-stamp
+
+	# Copy jabclnd files
+	cp cfg/jabclnd.conf debian/jabclnd/etc/jabclnd/
+	cp -a sql debian/jabclnd/usr/share/doc/jabclnd/
+	cp -a openfire debian/jabclnd/usr/share/doc/jabclnd/
+	cp README.rst debian/jabclnd/usr/share/doc/jabclnd/
+	cp src/jabclnd/*.py debian/jabclnd/usr/share/jabclnd/jabclnd/
+	cp src/twisted/plugins/*.py debian/jabclnd/usr/share/jabclnd/twisted/plugins/
+
+binary-arch: build install
+
+binary-indep: build install
+	dh_testdir
+	dh_testroot
+	dh_strip
+	dh_installchangelogs
+	dh_compress
+	dh_python2
+	dh_fixperms
+	dh_installdeb
+	dh_gencontrol
+	dh_md5sums
+	dh_builddeb
+
+source diff:
+	@echo >&2 'source and diff are obsolete - use dpkg-source -b'; false
+
+binary: binary-indep binary-arch
+.PHONY: build clean binary-indep binary-arch binary install

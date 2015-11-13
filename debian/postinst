@@ -1,0 +1,12 @@
+#!/bin/sh
+
+set -e
+
+chmod 640 /etc/jabclnd/jabclnd.conf
+
+if [ -x "/etc/init.d/jabclnd" ]; then
+	update-rc.d jabclnd defaults >/dev/null
+	invoke-rc.d jabclnd start || exit $?
+fi
+
+#DEBHELPER#

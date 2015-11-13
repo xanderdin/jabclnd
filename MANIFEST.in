@@ -1,0 +1,8 @@
+graft sql
+graft setup
+graft debian
+graft openfire
+include LICENSE
+include requirements.txt
+include cfg/jabclnd.conf
+recursive-include src *.py

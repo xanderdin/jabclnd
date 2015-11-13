@@ -1,0 +1,15 @@
+Source: jabclnd
+Section: net
+Priority: extra
+Maintainer: Alexander Pravdin <aledin@mail.ru>
+Build-Depends: debhelper (>= 9), python (>= 2.6.5-7), dh-python
+Standards-Version: 3.9.6
+
+Package: jabclnd
+Architecture: all
+Depends: python (>= 2.7.3-4), python-twisted (>= 12.0.0-1), python-txpostgres (>= 1.4.0-1), python-wokkel (>= 0.7.1-1)
+Description: Jabber Client daemon (jabclnd)
+ Jabber Client daemon (jabclnd) is a simple service for sending and receiving
+ XMPP messages from/to a SQL database. It uses PostgreSQL as its backend
+ database. It's also build on Twisted framework, so to run it you need twistd
+ daemon.

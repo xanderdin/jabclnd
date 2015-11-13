@@ -1,0 +1,25 @@
+* How to setup Openfire to get users from custom DB.
+
+1. Install Openfire server.
+2. Connect to web-console and finish the setup procedure.
+3. Login to web-console as admin user.
+4. Go to Server Manager -> System Properties.
+5. Delete provider.auth.className and provider.user.className properties.
+6. Stop Openfire server.
+7. Edit the provided openfire.xml file and replace with it the one in
+   Openfire conf directory.
+8. As the openfire.xml file contains database access credentials, change
+   file permissions accordingly:
+
+   chown openfire.openfire conf/openfire.xml
+   chmod 640 conf/openfire.xml
+
+9. Add admin user and all required users to openfire_users table in custom DB.
+10. Start Openfire server, login as admin user to its web-console, check
+   added users. If all is Ok, proceed with other required configuration.
+
+Note: if something goes wrong,  it's easier to uninstall Openfire server
+completely and start the whole procedure from the beginning.
+
+For more details see the Openfire database integration guide at
+http://igniterealtime.org/builds/openfire/docs/latest/documentation/db-integration-guide.html
